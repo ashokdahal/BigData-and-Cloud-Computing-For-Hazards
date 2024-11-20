@@ -1,6 +1,6 @@
 
 # Cubes, Clouds and Hazards
-This is course material for the lecturs on Cubes, Clouds and Hazards which is based on the online course Cubes and Clouds (Zellener et al., 2024) but with main focus on Natural Hazards and Mapping those Hazards.
+This is course material for the lecturs on Cubes, Clouds and Hazards which is based on the online course Cubes and Clouds (Zellener et al., 2024) but with main focus on Natural Hazards (Landslides) and Mapping those Hazards.
 
 ## Description
 The physical lectures on **'Cubes, Clouds &amp; Hazards '** teaches the concepts of data cubes, cloud platforms and open science in the context of earth observation for monitoring Natural Hazards. Here is a great introduction about the concepts of cubes and clouds for earth observation:
