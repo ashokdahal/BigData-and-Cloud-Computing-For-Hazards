@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3 Data Access and Basic Processing &#8212; Cubes, Clouds &amp; Hazards</title>
+    <title>Resample Operators &#8212; Cubes, Clouds &amp; Hazards</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '2.3_data_access/exercises/23_data_access_resample';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.3 Data Access and Basic Processing" href="23_data_access_aggregate.html" />
-    <link rel="prev" title="2.3 Data Access and Basic Processing" href="23_data_access_filter.html" />
+    <link rel="next" title="Aggregate Operators" href="23_data_access_aggregate.html" />
+    <link rel="prev" title="Filter Operators" href="23_data_access_filter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -188,12 +188,12 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2.3_data_access.html">Access EO Data from the Cloud</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_lazy_loading.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_reduce.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_filter.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_aggregate.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_apply.html">2.3 Data Access and Basic Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_lazy_loading.html">Lazy Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_reduce.html">Reduce Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_filter.html">Filter Operators</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Resample Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_aggregate.html">Aggregate Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_apply.html">Apply Operator</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data formats for achieving scalability</span></p>
 <ul class="nav bd-sidenav">
@@ -380,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2.3 Data Access and Basic Processing</h1>
+    <h1>Resample Operators</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,10 +390,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-operators">Resample Operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat"><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat"><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat</a></li>
 </ul>
             </nav>
         </div>
@@ -408,13 +405,11 @@
   <p><img src="https://raw.githubusercontent.com/EO-College/cubes-and-clouds/main/icons/cnc_3icons_process_circle.svg"
      alt="Cubes & Clouds logo"
      style="float: center; margin-right: 10px;" /></p>
-<section class="tex2jax_ignore mathjax_ignore" id="data-access-and-basic-processing">
-<h1>2.3 Data Access and Basic Processing<a class="headerlink" href="#data-access-and-basic-processing" title="Link to this heading">#</a></h1>
-<section id="resample-operators">
-<h2>Resample Operators<a class="headerlink" href="#resample-operators" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="resample-operators">
+<h1>Resample Operators<a class="headerlink" href="#resample-operators" title="Link to this heading">#</a></h1>
 <p>Sometimes we need to align the spatial or temporal dimension of two datacubes, so that they can be merged together.</p>
 <section id="resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat">
-<h3><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat<a class="headerlink" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat" title="Link to this heading">#</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat<a class="headerlink" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat" title="Link to this heading">#</a></h2>
 <p>Start importing the necessary libraries and initialize a local connection for Client-Side Processing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -478,7 +473,6 @@
 </div>
 </section>
 </section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -516,7 +510,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2.3 Data Access and Basic Processing</p>
+        <p class="prev-next-title">Filter Operators</p>
       </div>
     </a>
     <a class="right-next"
@@ -524,7 +518,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.3 Data Access and Basic Processing</p>
+        <p class="prev-next-title">Aggregate Operators</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -545,10 +539,7 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-operators">Resample Operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat"><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-cube-spatial-spatial-resampling-sentinel-2-to-match-landsat"><code class="docutils literal notranslate"><span class="pre">resample_cube_spatial</span></code>: spatial resampling Sentinel-2 to match Landsat</a></li>
 </ul>
   </nav></div>
 

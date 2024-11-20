@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3 Data Access and Basic Processing &#8212; Cubes, Clouds &amp; Hazards</title>
+    <title>Filter Operators &#8212; Cubes, Clouds &amp; Hazards</title>
   
   
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '2.3_data_access/exercises/23_data_access_filter';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.3 Data Access and Basic Processing" href="23_data_access_resample.html" />
-    <link rel="prev" title="2.3 Data Access and Basic Processing" href="23_data_access_reduce.html" />
+    <link rel="next" title="Resample Operators" href="23_data_access_resample.html" />
+    <link rel="prev" title="Reduce Operators" href="23_data_access_reduce.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -188,12 +188,12 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2.3_data_access.html">Access EO Data from the Cloud</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_lazy_loading.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_reduce.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_resample.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_aggregate.html">2.3 Data Access and Basic Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_data_access_apply.html">2.3 Data Access and Basic Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_lazy_loading.html">Lazy Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_reduce.html">Reduce Operators</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Filter Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_resample.html">Resample Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_aggregate.html">Aggregate Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_data_access_apply.html">Apply Operator</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data formats for achieving scalability</span></p>
 <ul class="nav bd-sidenav">
@@ -380,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2.3 Data Access and Basic Processing</h1>
+    <h1>Filter Operators</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,13 +390,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-operators">Filter Operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-filter">Properties Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filter">Temporal filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filter">Spatial filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bands-filter">Bands filter</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-filter">Properties Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filter">Temporal filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filter">Spatial filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bands-filter">Bands filter</a></li>
 </ul>
             </nav>
         </div>
@@ -411,15 +408,13 @@
   <p><img src="https://raw.githubusercontent.com/EO-College/cubes-and-clouds/main/icons/cnc_3icons_process_circle.svg"
      alt="Cubes & Clouds logo"
      style="float: center; margin-right: 10px;" /></p>
-<section class="tex2jax_ignore mathjax_ignore" id="data-access-and-basic-processing">
-<h1>2.3 Data Access and Basic Processing<a class="headerlink" href="#data-access-and-basic-processing" title="Link to this heading">#</a></h1>
-<section id="filter-operators">
-<h2>Filter Operators<a class="headerlink" href="#filter-operators" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="filter-operators">
+<h1>Filter Operators<a class="headerlink" href="#filter-operators" title="Link to this heading">#</a></h1>
 <p>When interacting with large data collections, it is necessary to keep in mind that it’s not possible to load everything!</p>
 <p>Therefore, we always have to define our requirements in advance and apply them to the data using filter operators.</p>
 <p>Let’s start again with the same sample data from the Sentinel-2 STAC Collection with an additional filter.</p>
 <section id="properties-filter">
-<h3>Properties Filter<a class="headerlink" href="#properties-filter" title="Link to this heading">#</a></h3>
+<h2>Properties Filter<a class="headerlink" href="#properties-filter" title="Link to this heading">#</a></h2>
 <p>When working with optical data like Sentinel-2, most of the times we would like to discard cloudy acquisitions as soon as possible.</p>
 <p>We can do it using a property filter: in this case we want to keep only the acquisitions with less than 50% cloud coverage.</p>
 <div class="cell docutils container">
@@ -448,7 +443,7 @@
 </div>
 </section>
 <section id="temporal-filter">
-<h3>Temporal filter<a class="headerlink" href="#temporal-filter" title="Link to this heading">#</a></h3>
+<h2>Temporal filter<a class="headerlink" href="#temporal-filter" title="Link to this heading">#</a></h2>
 <p>To slice along time the data collection with openEO, we can use the <code class="docutils literal notranslate"><span class="pre">filter_temporal</span></code> process.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -464,7 +459,7 @@
 <p><strong>Quiz hint: look carefully at the dimensions of the resulting datacube!</strong></p>
 </section>
 <section id="spatial-filter">
-<h3>Spatial filter<a class="headerlink" href="#spatial-filter" title="Link to this heading">#</a></h3>
+<h2>Spatial filter<a class="headerlink" href="#spatial-filter" title="Link to this heading">#</a></h2>
 <p>To slice along the spatial dimensions the data collection with openEO, we can use <code class="docutils literal notranslate"><span class="pre">filter_bbox</span></code> or <code class="docutils literal notranslate"><span class="pre">filter_spatial</span></code> processes.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">filter_bbox</span></code> process is used with a set of coordinates:</p>
 <div class="cell docutils container">
@@ -479,7 +474,7 @@
 <p><strong>Quiz hint: look carefully at the dimensions of the loaded datacube!</strong></p>
 </section>
 <section id="bands-filter">
-<h3>Bands filter<a class="headerlink" href="#bands-filter" title="Link to this heading">#</a></h3>
+<h2>Bands filter<a class="headerlink" href="#bands-filter" title="Link to this heading">#</a></h2>
 <p>To slice along the bands dimension, keeping only the necessary bands, we can use the <code class="docutils literal notranslate"><span class="pre">filter_bands</span></code> process.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -490,7 +485,6 @@
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
@@ -530,7 +524,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2.3 Data Access and Basic Processing</p>
+        <p class="prev-next-title">Reduce Operators</p>
       </div>
     </a>
     <a class="right-next"
@@ -538,7 +532,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">2.3 Data Access and Basic Processing</p>
+        <p class="prev-next-title">Resample Operators</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -559,13 +553,10 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-operators">Filter Operators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-filter">Properties Filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filter">Temporal filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filter">Spatial filter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bands-filter">Bands filter</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-filter">Properties Filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filter">Temporal filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filter">Spatial filter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bands-filter">Bands filter</a></li>
 </ul>
   </nav></div>
 
