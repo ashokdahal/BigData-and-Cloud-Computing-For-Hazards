@@ -9,7 +9,7 @@ https://user-images.githubusercontent.com/51962348/234564489-98a56dd2-1359-4972-
 
 
 ### Content
-The course explains the concepts of data cubes, EO cloud platforms and open science by applying them to a typical EO workflow from data discovery, data processing up to sharing the results in an open and FAIR (Findable, Accessible, Interoperable, Reusable) way. An engaging mixture of videos, animated content, lectures, hands-on exercises and quizzes transmits the content.
+The course explains the concepts of data cubes, EO cloud platforms and their use for natural hazard monitoring and mapping. 
 
 ```mermaid
 flowchart LR
