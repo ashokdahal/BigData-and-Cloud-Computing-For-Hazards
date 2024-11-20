@@ -16,13 +16,12 @@ parts:
   - caption: Data access with OpenEO
     chapters:
     - file: 2.3_data_access/2.3_data_access
-      sections:
-      - file: 2.3_data_access/exercises/23_data_access_lazy_loading
-      - file: 2.3_data_access/exercises/23_data_access_reduce
-      - file: 2.3_data_access/exercises/23_data_access_filter
-      - file: 2.3_data_access/exercises/23_data_access_resample
-      - file: 2.3_data_access/exercises/23_data_access_aggregate
-      - file: 2.3_data_access/exercises/23_data_access_apply
+    - file: 2.3_data_access/exercises/23_data_access_lazy_loading
+    - file: 2.3_data_access/exercises/23_data_access_reduce
+    - file: 2.3_data_access/exercises/23_data_access_filter
+    - file: 2.3_data_access/exercises/23_data_access_resample
+    - file: 2.3_data_access/exercises/23_data_access_aggregate
+    - file: 2.3_data_access/exercises/23_data_access_apply
   - caption: Data formats for achieving scalability
     chapters:
     - file: 2.4_formats_and_performance/2.4_formats_and_performance
