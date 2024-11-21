@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Import the Required Libraries &#8212; Cubes, Clouds &amp; Hazards</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3.1_data_processing/3.1_LandslideMapping';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Validation" href="../3.2_validation/3.2_validation.html" />
+    <link rel="prev" title="3.1 Data Processing" href="3.1_data_processing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="Cubes, Clouds & Hazards - Home"/>
+    <img src="../_static/logo.jpg" class="logo__image only-dark pst-js-only" alt="Cubes, Clouds & Hazards - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Cubes, Clouds and Hazards
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/0_introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_introduction/exercises/0_login.html">Login to openEO</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1.1_intro_platform/1.1_intro_platform.html">Earth Observation cloud platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1.2_data_cube/1.2_data_cube.html">What is a data cube?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Discovery and metadata</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2.1_data_discovery/2.1_data_discovery.html">Data Discovery</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../2.2_data_properties/2.2_data_properties.html">Data Properties</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data access with OpenEO</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/2.3_data_access.html">Access EO Data from the Cloud</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_lazy_loading.html">Lazy Loading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_reduce.html">Reduce Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_filter.html">Filter Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_resample.html">Resample Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_aggregate.html">Aggregate Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2.3_data_access/exercises/23_data_access_apply.html">Apply Operator</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data formats for achieving scalability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2.4_formats_and_performance/2.4_formats_and_performance.html">Data Formats and Performance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Process &amp; Validation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3.1_data_processing.html">Data processing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Import the Required Libraries</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../3.2_validation/3.2_validation.html">Validation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ashokdahal/cloudhaz" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ashokdahal/cloudhaz/issues/new?title=Issue%20on%20page%20%2F3.1_data_processing/3.1_LandslideMapping.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/3.1_data_processing/3.1_LandslideMapping.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Import the Required Libraries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import the Required Libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-cloud-server">Connect to the Cloud Server</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-area-of-interest">Define Area of Interest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#post-event-mode-for-scientific-purpose">Post Event Mode (For Scientific Purpose)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-you-can-also-download-the-dem-separately-to-do-some-post-processing">Now you can also download the DEM (Separately) to do some post processing</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="import-the-required-libraries">
+<h1>Import the Required Libraries<a class="headerlink" href="#import-the-required-libraries" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openeo</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="connect-to-the-cloud-server">
+<h1>Connect to the Cloud Server<a class="headerlink" href="#connect-to-the-cloud-server" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-area-of-interest">
+<h1>Define Area of Interest<a class="headerlink" href="#define-area-of-interest" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="nb">input</span><span class="p">:</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">field</span>
+
+
+<span class="n">pre_date</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2018-03-03&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-09-03&quot;</span><span class="p">]</span>
+<span class="n">post_date</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2018-09-09&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-12-09&quot;</span><span class="p">]</span>
+<span class="n">aoi</span> <span class="o">=</span> <span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;aoi/aoi.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">([</span><span class="mf">42.75</span><span class="p">,</span> <span class="mf">141.96</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">tile</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+      <span class="n">tiles</span> <span class="o">=</span> <span class="s1">&#39;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">attr</span> <span class="o">=</span> <span class="s1">&#39;Esri&#39;</span><span class="p">,</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Esri Satellite&#39;</span><span class="p">,</span>
+      <span class="n">overlay</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+      <span class="n">control</span> <span class="o">=</span> <span class="kc">True</span>
+      <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_edc1bd69e5d484819dc720ca4fd62fcf {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_edc1bd69e5d484819dc720ca4fd62fcf&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_edc1bd69e5d484819dc720ca4fd62fcf = L.map(
+                &quot;map_edc1bd69e5d484819dc720ca4fd62fcf&quot;,
+                {
+                    center: [42.75, 141.96],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d1fab926013296d252e4aed4c721141a = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_d1fab926013296d252e4aed4c721141a.addTo(map_edc1bd69e5d484819dc720ca4fd62fcf);
+        
+    
+
+        function geo_json_1cedc7b36b143ba50d71d1176a0f6544_onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_1cedc7b36b143ba50d71d1176a0f6544 = L.geoJson(null, {
+                onEachFeature: geo_json_1cedc7b36b143ba50d71d1176a0f6544_onEachFeature,
+            
+        });
+
+        function geo_json_1cedc7b36b143ba50d71d1176a0f6544_add (data) {
+            geo_json_1cedc7b36b143ba50d71d1176a0f6544
+                .addData(data);
+        }
+            geo_json_1cedc7b36b143ba50d71d1176a0f6544_add({&quot;crs&quot;: {&quot;properties&quot;: {&quot;name&quot;: &quot;urn:ogc:def:crs:OGC:1.3:CRS84&quot;}, &quot;type&quot;: &quot;name&quot;}, &quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[141.77569572812214, 42.5600703495564], [141.78048229229495, 42.94270781836588], [142.12848110936739, 42.9398059492692], [142.121561253178, 42.557206842391864], [141.77569572812214, 42.5600703495564]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;properties&quot;: {&quot;AREA&quot;: 1206630253.9572754, &quot;HEIGHT&quot;: 42493.31413000729, &quot;PERIM&quot;: 141778.16258306685, &quot;WIDTH&quot;: 28395.767161526135}, &quot;type&quot;: &quot;Feature&quot;}], &quot;name&quot;: &quot;aoi&quot;, &quot;type&quot;: &quot;FeatureCollection&quot;, &quot;xy_coordinate_resolution&quot;: 1e-15});
+        geo_json_1cedc7b36b143ba50d71d1176a0f6544.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_1cedc7b36b143ba50d71d1176a0f6544.addTo(map_edc1bd69e5d484819dc720ca4fd62fcf);
+        
+    
+            var tile_layer_10848d7f036b8953bf5bb49b39dbcc25 = L.tileLayer(
+                &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&quot;,
+                {&quot;attribution&quot;: &quot;Esri&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_10848d7f036b8953bf5bb49b39dbcc25.addTo(map_edc1bd69e5d484819dc720ca4fd62fcf);
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a function to identify cloud-free pixels in the available data-cube</span>
+
+<span class="k">def</span> <span class="nf">getBAP</span><span class="p">(</span><span class="n">scl</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">scl</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">scl</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">scl</span> <span class="o">==</span> <span class="mi">9</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">scl</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># mask is a bit noisy, so we apply smoothening</span>
+    <span class="c1"># 2D gaussian kernel</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernel</span> <span class="o">/</span> <span class="n">kernel</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Morphological dilation of mask: convolution + threshold</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">apply_kernel</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span> <span class="o">&gt;</span> <span class="mf">0.1</span>
+
+    <span class="n">data_masked</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+    <span class="c1"># now select Best Available Pixel based on the mask</span>
+    <span class="k">return</span> <span class="n">data_masked</span><span class="o">.</span><span class="n">reduce_dimension</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="n">reducer</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load S2 pre-collection</span>
+<span class="n">s2pre</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL2_L2A&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="n">pre_date</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">],</span>
+    <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">s2pre_scl</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL2_L2A&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="n">pre_date</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SCL&quot;</span><span class="p">],</span>
+    <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># calculate ndvi</span>
+<span class="n">ndvi_pre</span> <span class="o">=</span> <span class="n">s2pre</span><span class="o">.</span><span class="n">ndvi</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Pre-event cloud free mosiac</span>
+<span class="n">ndvi_pre</span> <span class="o">=</span> <span class="n">getBAP</span><span class="p">(</span><span class="n">s2pre_scl</span><span class="p">,</span> <span class="n">ndvi_pre</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="post-event-mode-for-scientific-purpose">
+<h1>Post Event Mode (For Scientific Purpose)<a class="headerlink" href="#post-event-mode-for-scientific-purpose" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load S2 post collection</span>
+<span class="n">s2post</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL2_L2A&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="n">post_date</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B04&quot;</span><span class="p">,</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;B12&quot;</span><span class="p">],</span>
+    <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">s2post_scl</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL2_L2A&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="n">post_date</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SCL&quot;</span><span class="p">],</span>
+    <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># calculate post ndvi mosaic</span>
+<span class="n">ndvi_post</span> <span class="o">=</span> <span class="n">s2post</span><span class="o">.</span><span class="n">ndvi</span><span class="p">()</span>
+<span class="n">ndvi_post</span> <span class="o">=</span> <span class="n">getBAP</span><span class="p">(</span><span class="n">s2post_scl</span><span class="p">,</span> <span class="n">ndvi_post</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ndvi_post</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;Result/NDVIDiff_post.tiff&quot;</span>
+<span class="p">)</span>
+
+<span class="n">ndvi_pre</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;Result/NDVIDiff_pre.tiff&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate difference in NDVI</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">ndvi_pre</span> <span class="o">-</span> <span class="n">ndvi_post</span><span class="p">)</span><span class="o">/</span><span class="n">ndvi_pre</span>
+<span class="c1"># lets execute the process</span>
+<span class="n">diff</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Landslides in Japan Mosiac&quot;</span><span class="p">,</span>
+    <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;Result/NDVIDiff.tiff&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: send &#39;start&#39;
+0:00:14 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: created (progress 0%)
+0:00:20 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: created (progress 0%)
+0:00:26 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: created (progress 0%)
+0:00:35 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: created (progress 0%)
+0:00:44 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: created (progress 0%)
+0:00:57 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:01:12 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:01:32 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:01:56 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:02:26 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:03:04 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:03:51 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:04:49 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:05:49 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:06:49 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:07:50 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:08:50 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:09:50 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: running (progress N/A)
+0:10:59 Job &#39;j-2411148b64304a90bc89dfa7f770d361&#39;: finished (progress 100%)
+</pre></div>
+</div>
+<div class="output text_html">
+    <script>
+    if (!window.customElements || !window.customElements.get('openeo-job')) {
+        var el = document.createElement('script');
+        el.src = "https://cdn.jsdelivr.net/npm/@openeo/vue-components@2/assets/openeo.min.js";
+        document.head.appendChild(el);
+
+        var font = document.createElement('font');
+        font.as = "font";
+        font.type = "font/woff2";
+        font.crossOrigin = true;
+        font.href = "https://use.fontawesome.com/releases/v5.13.0/webfonts/fa-solid-900.woff2"
+        document.head.appendChild(font);
+    }
+    </script>
+    <openeo-job>
+        <script type="application/json">{"currency": "credits", "job": {"costs": 10, "created": "2024-11-14T11:05:24Z", "id": "j-2411148b64304a90bc89dfa7f770d361", "process": {"process_graph": {"apply1": {"arguments": {"data": {"from_node": "loadcollection2"}, "process": {"process_graph": {"eq1": {"arguments": {"x": {"from_parameter": "x"}, "y": 3}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply10": {"arguments": {"data": {"from_node": "applykernel2"}, "process": {"process_graph": {"gt2": {"arguments": {"x": {"from_parameter": "x"}, "y": 0.1}, "process_id": "gt", "result": true}}}}, "process_id": "apply"}, "apply2": {"arguments": {"data": {"from_node": "loadcollection2"}, "process": {"process_graph": {"eq2": {"arguments": {"x": {"from_parameter": "x"}, "y": 8}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply3": {"arguments": {"data": {"from_node": "loadcollection2"}, "process": {"process_graph": {"eq3": {"arguments": {"x": {"from_parameter": "x"}, "y": 9}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply4": {"arguments": {"data": {"from_node": "loadcollection2"}, "process": {"process_graph": {"eq4": {"arguments": {"x": {"from_parameter": "x"}, "y": 10}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply5": {"arguments": {"data": {"from_node": "applykernel1"}, "process": {"process_graph": {"gt1": {"arguments": {"x": {"from_parameter": "x"}, "y": 0.1}, "process_id": "gt", "result": true}}}}, "process_id": "apply"}, "apply6": {"arguments": {"data": {"from_node": "loadcollection4"}, "process": {"process_graph": {"eq5": {"arguments": {"x": {"from_parameter": "x"}, "y": 3}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply7": {"arguments": {"data": {"from_node": "loadcollection4"}, "process": {"process_graph": {"eq6": {"arguments": {"x": {"from_parameter": "x"}, "y": 8}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply8": {"arguments": {"data": {"from_node": "loadcollection4"}, "process": {"process_graph": {"eq7": {"arguments": {"x": {"from_parameter": "x"}, "y": 9}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "apply9": {"arguments": {"data": {"from_node": "loadcollection4"}, "process": {"process_graph": {"eq8": {"arguments": {"x": {"from_parameter": "x"}, "y": 10}, "process_id": "eq", "result": true}}}}, "process_id": "apply"}, "applykernel1": {"arguments": {"border": 0, "data": {"from_node": "mergecubes3"}, "factor": 1, "kernel": [[3.5713954074985053e-06, 2.0713152601434825e-05, 8.128458481216907e-05, 0.00021583600643790027, 0.0003877870659458747, 0.0004714291802648667, 0.0003877870659458747, 0.00021583600643790027, 8.128458481216907e-05, 2.0713152601434825e-05, 3.5713954074985053e-06], [2.0713152601434825e-05, 0.00012013082891620589, 0.00047142918026486666, 0.001251791982720796, 0.002249062833237385, 0.002734165063631252, 0.002249062833237385, 0.001251791982720796, 0.00047142918026486666, 0.00012013082891620589, 2.0713152601434825e-05], [8.128458481216907e-05, 0.00047142918026486666, 0.0018500286230458429, 0.004912404863932368, 0.008825992939554635, 0.01072967868685566, 0.008825992939554635, 0.004912404863932368, 0.0018500286230458429, 0.00047142918026486666, 8.128458481216907e-05], [0.00021583600643790027, 0.001251791982720796, 0.004912404863932368, 0.013043971994042173, 0.023435772887621185, 0.028490654205643125, 0.023435772887621185, 0.013043971994042173, 0.004912404863932368, 0.001251791982720796, 0.00021583600643790027], [0.0003877870659458747, 0.002249062833237385, 0.008825992939554635, 0.023435772887621185, 0.04210645738054507, 0.05118843414323286, 0.04210645738054507, 0.023435772887621185, 0.008825992939554635, 0.002249062833237385, 0.0003877870659458747], [0.0004714291802648667, 0.002734165063631252, 0.01072967868685566, 0.028490654205643125, 0.05118843414323286, 0.0622293100166331, 0.05118843414323286, 0.028490654205643125, 0.01072967868685566, 0.002734165063631252, 0.0004714291802648667], [0.0003877870659458747, 0.002249062833237385, 0.008825992939554635, 0.023435772887621185, 0.04210645738054507, 0.05118843414323286, 0.04210645738054507, 0.023435772887621185, 0.008825992939554635, 0.002249062833237385, 0.0003877870659458747], [0.00021583600643790027, 0.001251791982720796, 0.004912404863932368, 0.013043971994042173, 0.023435772887621185, 0.028490654205643125, 0.023435772887621185, 0.013043971994042173, 0.004912404863932368, 0.001251791982720796, 0.00021583600643790027], [8.128458481216907e-05, 0.00047142918026486666, 0.0018500286230458429, 0.004912404863932368, 0.008825992939554635, 0.01072967868685566, 0.008825992939554635, 0.004912404863932368, 0.0018500286230458429, 0.00047142918026486666, 8.128458481216907e-05], [2.0713152601434825e-05, 0.00012013082891620589, 0.00047142918026486666, 0.001251791982720796, 0.002249062833237385, 0.002734165063631252, 0.002249062833237385, 0.001251791982720796, 0.00047142918026486666, 0.00012013082891620589, 2.0713152601434825e-05], [3.5713954074985053e-06, 2.0713152601434825e-05, 8.128458481216907e-05, 0.00021583600643790027, 0.0003877870659458747, 0.0004714291802648667, 0.0003877870659458747, 0.00021583600643790027, 8.128458481216907e-05, 2.0713152601434825e-05, 3.5713954074985053e-06]], "replace_invalid": 0}, "process_id": "apply_kernel"}, "applykernel2": {"arguments": {"border": 0, "data": {"from_node": "mergecubes6"}, "factor": 1, "kernel": [[3.5713954074985053e-06, 2.0713152601434825e-05, 8.128458481216907e-05, 0.00021583600643790027, 0.0003877870659458747, 0.0004714291802648667, 0.0003877870659458747, 0.00021583600643790027, 8.128458481216907e-05, 2.0713152601434825e-05, 3.5713954074985053e-06], [2.0713152601434825e-05, 0.00012013082891620589, 0.00047142918026486666, 0.001251791982720796, 0.002249062833237385, 0.002734165063631252, 0.002249062833237385, 0.001251791982720796, 0.00047142918026486666, 0.00012013082891620589, 2.0713152601434825e-05], [8.128458481216907e-05, 0.00047142918026486666, 0.0018500286230458429, 0.004912404863932368, 0.008825992939554635, 0.01072967868685566, 0.008825992939554635, 0.004912404863932368, 0.0018500286230458429, 0.00047142918026486666, 8.128458481216907e-05], [0.00021583600643790027, 0.001251791982720796, 0.004912404863932368, 0.013043971994042173, 0.023435772887621185, 0.028490654205643125, 0.023435772887621185, 0.013043971994042173, 0.004912404863932368, 0.001251791982720796, 0.00021583600643790027], [0.0003877870659458747, 0.002249062833237385, 0.008825992939554635, 0.023435772887621185, 0.04210645738054507, 0.05118843414323286, 0.04210645738054507, 0.023435772887621185, 0.008825992939554635, 0.002249062833237385, 0.0003877870659458747], [0.0004714291802648667, 0.002734165063631252, 0.01072967868685566, 0.028490654205643125, 0.05118843414323286, 0.0622293100166331, 0.05118843414323286, 0.028490654205643125, 0.01072967868685566, 0.002734165063631252, 0.0004714291802648667], [0.0003877870659458747, 0.002249062833237385, 0.008825992939554635, 0.023435772887621185, 0.04210645738054507, 0.05118843414323286, 0.04210645738054507, 0.023435772887621185, 0.008825992939554635, 0.002249062833237385, 0.0003877870659458747], [0.00021583600643790027, 0.001251791982720796, 0.004912404863932368, 0.013043971994042173, 0.023435772887621185, 0.028490654205643125, 0.023435772887621185, 0.013043971994042173, 0.004912404863932368, 0.001251791982720796, 0.00021583600643790027], [8.128458481216907e-05, 0.00047142918026486666, 0.0018500286230458429, 0.004912404863932368, 0.008825992939554635, 0.01072967868685566, 0.008825992939554635, 0.004912404863932368, 0.0018500286230458429, 0.00047142918026486666, 8.128458481216907e-05], [2.0713152601434825e-05, 0.00012013082891620589, 0.00047142918026486666, 0.001251791982720796, 0.002249062833237385, 0.002734165063631252, 0.002249062833237385, 0.001251791982720796, 0.00047142918026486666, 0.00012013082891620589, 2.0713152601434825e-05], [3.5713954074985053e-06, 2.0713152601434825e-05, 8.128458481216907e-05, 0.00021583600643790027, 0.0003877870659458747, 0.0004714291802648667, 0.0003877870659458747, 0.00021583600643790027, 8.128458481216907e-05, 2.0713152601434825e-05, 3.5713954074985053e-06]], "replace_invalid": 0}, "process_id": "apply_kernel"}, "loadcollection1": {"arguments": {"bands": ["B04", "B08", "B12"], "id": "SENTINEL2_L2A", "properties": {"eo:cloud_cover": {"process_graph": {"lte1": {"arguments": {"x": {"from_parameter": "value"}, "y": 90}, "process_id": "lte", "result": true}}}}, "spatial_extent": {"crs": {"properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}, "type": "name"}, "features": [{"geometry": {"coordinates": [[[[141.77569572812214, 42.5600703495564], [141.78048229229495, 42.94270781836588], [142.12848110936739, 42.9398059492692], [142.121561253178, 42.557206842391864], [141.77569572812214, 42.5600703495564]]]], "type": "MultiPolygon"}, "properties": {"AREA": 1206630253.9572754, "HEIGHT": 42493.31413000729, "PERIM": 141778.16258306685, "WIDTH": 28395.767161526135}, "type": "Feature"}], "name": "aoi", "type": "FeatureCollection", "xy_coordinate_resolution": 1e-15}, "temporal_extent": ["2018-03-03", "2018-09-03"]}, "process_id": "load_collection"}, "loadcollection2": {"arguments": {"bands": ["SCL"], "id": "SENTINEL2_L2A", "properties": {"eo:cloud_cover": {"process_graph": {"lte2": {"arguments": {"x": {"from_parameter": "value"}, "y": 90}, "process_id": "lte", "result": true}}}}, "spatial_extent": {"crs": {"properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}, "type": "name"}, "features": [{"geometry": {"coordinates": [[[[141.77569572812214, 42.5600703495564], [141.78048229229495, 42.94270781836588], [142.12848110936739, 42.9398059492692], [142.121561253178, 42.557206842391864], [141.77569572812214, 42.5600703495564]]]], "type": "MultiPolygon"}, "properties": {"AREA": 1206630253.9572754, "HEIGHT": 42493.31413000729, "PERIM": 141778.16258306685, "WIDTH": 28395.767161526135}, "type": "Feature"}], "name": "aoi", "type": "FeatureCollection", "xy_coordinate_resolution": 1e-15}, "temporal_extent": ["2018-03-03", "2018-09-03"]}, "process_id": "load_collection"}, "loadcollection3": {"arguments": {"bands": ["B04", "B08", "B12"], "id": "SENTINEL2_L2A", "properties": {"eo:cloud_cover": {"process_graph": {"lte3": {"arguments": {"x": {"from_parameter": "value"}, "y": 90}, "process_id": "lte", "result": true}}}}, "spatial_extent": {"crs": {"properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}, "type": "name"}, "features": [{"geometry": {"coordinates": [[[[141.77569572812214, 42.5600703495564], [141.78048229229495, 42.94270781836588], [142.12848110936739, 42.9398059492692], [142.121561253178, 42.557206842391864], [141.77569572812214, 42.5600703495564]]]], "type": "MultiPolygon"}, "properties": {"AREA": 1206630253.9572754, "HEIGHT": 42493.31413000729, "PERIM": 141778.16258306685, "WIDTH": 28395.767161526135}, "type": "Feature"}], "name": "aoi", "type": "FeatureCollection", "xy_coordinate_resolution": 1e-15}, "temporal_extent": ["2018-09-09", "2018-12-09"]}, "process_id": "load_collection"}, "loadcollection4": {"arguments": {"bands": ["SCL"], "id": "SENTINEL2_L2A", "properties": {"eo:cloud_cover": {"process_graph": {"lte4": {"arguments": {"x": {"from_parameter": "value"}, "y": 90}, "process_id": "lte", "result": true}}}}, "spatial_extent": {"crs": {"properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}, "type": "name"}, "features": [{"geometry": {"coordinates": [[[[141.77569572812214, 42.5600703495564], [141.78048229229495, 42.94270781836588], [142.12848110936739, 42.9398059492692], [142.121561253178, 42.557206842391864], [141.77569572812214, 42.5600703495564]]]], "type": "MultiPolygon"}, "properties": {"AREA": 1206630253.9572754, "HEIGHT": 42493.31413000729, "PERIM": 141778.16258306685, "WIDTH": 28395.767161526135}, "type": "Feature"}], "name": "aoi", "type": "FeatureCollection", "xy_coordinate_resolution": 1e-15}, "temporal_extent": ["2018-09-09", "2018-12-09"]}, "process_id": "load_collection"}, "mask1": {"arguments": {"data": {"from_node": "ndvi1"}, "mask": {"from_node": "apply5"}}, "process_id": "mask"}, "mask2": {"arguments": {"data": {"from_node": "ndvi2"}, "mask": {"from_node": "apply10"}}, "process_id": "mask"}, "mergecubes1": {"arguments": {"cube1": {"from_node": "apply1"}, "cube2": {"from_node": "apply2"}, "overlap_resolver": {"process_graph": {"or1": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes2": {"arguments": {"cube1": {"from_node": "mergecubes1"}, "cube2": {"from_node": "apply3"}, "overlap_resolver": {"process_graph": {"or2": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes3": {"arguments": {"cube1": {"from_node": "mergecubes2"}, "cube2": {"from_node": "apply4"}, "overlap_resolver": {"process_graph": {"or3": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes4": {"arguments": {"cube1": {"from_node": "apply6"}, "cube2": {"from_node": "apply7"}, "overlap_resolver": {"process_graph": {"or4": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes5": {"arguments": {"cube1": {"from_node": "mergecubes4"}, "cube2": {"from_node": "apply8"}, "overlap_resolver": {"process_graph": {"or5": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes6": {"arguments": {"cube1": {"from_node": "mergecubes5"}, "cube2": {"from_node": "apply9"}, "overlap_resolver": {"process_graph": {"or6": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "or", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes7": {"arguments": {"cube1": {"from_node": "reducedimension1"}, "cube2": {"from_node": "reducedimension2"}, "overlap_resolver": {"process_graph": {"subtract1": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "subtract", "result": true}}}}, "process_id": "merge_cubes"}, "mergecubes8": {"arguments": {"cube1": {"from_node": "mergecubes7"}, "cube2": {"from_node": "reducedimension1"}, "overlap_resolver": {"process_graph": {"divide1": {"arguments": {"x": {"from_parameter": "x"}, "y": {"from_parameter": "y"}}, "process_id": "divide", "result": true}}}}, "process_id": "merge_cubes"}, "ndvi1": {"arguments": {"data": {"from_node": "loadcollection1"}}, "process_id": "ndvi"}, "ndvi2": {"arguments": {"data": {"from_node": "loadcollection3"}}, "process_id": "ndvi"}, "reducedimension1": {"arguments": {"data": {"from_node": "mask1"}, "dimension": "t", "reducer": {"process_graph": {"median1": {"arguments": {"data": {"from_parameter": "data"}}, "process_id": "median", "result": true}}}}, "process_id": "reduce_dimension"}, "reducedimension2": {"arguments": {"data": {"from_node": "mask2"}, "dimension": "t", "reducer": {"process_graph": {"median2": {"arguments": {"data": {"from_parameter": "data"}}, "process_id": "median", "result": true}}}}, "process_id": "reduce_dimension"}, "saveresult1": {"arguments": {"data": {"from_node": "mergecubes8"}, "format": "GTiff", "options": {}}, "process_id": "save_result", "result": true}}}, "progress": 100, "status": "finished", "title": "Landslides in Japan Mosiac", "updated": "2024-11-14T11:15:16Z", "usage": {"cpu": {"unit": "cpu-seconds", "value": 4671.584951485}, "duration": {"unit": "seconds", "value": 552}, "input_pixel": {"unit": "mega-pixel", "value": 1437.96875}, "max_executor_memory": {"unit": "gb", "value": 2.090099334716797}, "memory": {"unit": "mb-seconds", "value": 19009871.54668899}, "network_received": {"unit": "b", "value": 33112929427}}}}</script>
+    </openeo-job>
+    </div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="now-you-can-also-download-the-dem-separately-to-do-some-post-processing">
+<h1>Now you can also download the DEM (Separately) to do some post processing<a class="headerlink" href="#now-you-can-also-download-the-dem-separately-to-do-some-post-processing" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dem</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;COPERNICUS_30&quot;</span><span class="p">,</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="n">aoi</span><span class="p">,</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DEM&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dem</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;Result/DEM.tiff&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./3.1_data_processing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3.1_data_processing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3.1 Data Processing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../3.2_validation/3.2_validation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Validation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import the Required Libraries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-cloud-server">Connect to the Cloud Server</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#define-area-of-interest">Define Area of Interest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#post-event-mode-for-scientific-purpose">Post Event Mode (For Scientific Purpose)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-you-can-also-download-the-dem-separately-to-do-some-post-processing">Now you can also download the DEM (Separately) to do some post processing</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ashok Dahal, Modified from the Content on  Cubes & Clouds by ESA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
