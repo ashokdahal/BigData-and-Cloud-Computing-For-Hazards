@@ -29,5 +29,10 @@ parts:
     chapters:
     - file: 3.1_data_processing/3.1_data_processing
       title: Data processing
+    - file: 3.1_data_processing/3.1_LandslideMapping
+      title: Mapping Landslides
     - file: 3.2_validation/3.2_validation
       title: Validation
+    - file:  3.2_validation/3.2_ThresholdPlayground
+      title: Validation of Landslides
+
